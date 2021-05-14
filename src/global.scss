@@ -24,3 +24,27 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.ion-color-buyit {
+    --ion-color-base: var(--ion-color-buyit);
+    --ion-color-base-rgb: var(--ion-color-buyit-rgb);
+    --ion-color-contrast: var(--ion-color-buyit-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-buyit-contrast-rgb);
+    --ion-color-shade: var(--ion-color-buyit-shade);
+    --ion-color-tint: var(--ion-color-buyit-tint);
+  }
+
+  ion-toolbar{
+     --background: var(--ion-color-buyit);
+     color: white;
+  }
+
+  ion-tab-bar{
+      --background: var(--ion-color-buyit);
+        
+  }
+
+  ion-menu{
+      --background: var(--ion-color-buyit);
+  }

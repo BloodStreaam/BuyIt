@@ -1,3 +1,4 @@
+import { ListaComprasPageModule } from './../lista-compras/lista-compras.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
@@ -20,8 +21,13 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'lista-compras',
+        loadChildren: () => import('../lista-compras/lista-compras.module').then(m => m.ListaComprasPageModule)
+      },
+
+      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/lista-compras',
         pathMatch: 'full'
       }
     ]

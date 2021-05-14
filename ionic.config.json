@@ -1,5 +1,7 @@
 {
   "name": "BuyIt",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
 export class TabsPage {
 
   constructor() {}
+  
+  public checkList = false;
 
+  public changeTab(){
+    this.checkList = true;
+  }
 }
