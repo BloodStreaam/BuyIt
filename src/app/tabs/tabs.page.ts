@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,11 +8,17 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(private route: Router) {}
   
-  public checkList = false;
+  public checkList = true;
 
-  public changeTab(){
-    this.checkList = true;
+  public changeTab(verification){
+    this.checkList = verification;
+    console.log(this.checkList)
   }
+
+  public searchProducts(){
+    this.route.navigate(["tabs/tabs/loja"]);
+  }
+
 }

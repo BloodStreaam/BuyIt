@@ -33,18 +33,28 @@
     --ion-color-contrast-rgb: var(--ion-color-buyit-contrast-rgb);
     --ion-color-shade: var(--ion-color-buyit-shade);
     --ion-color-tint: var(--ion-color-buyit-tint);
-  }
+}
 
-  ion-toolbar{
-     --background: var(--ion-color-buyit);
-     color: white;
-  }
+ion-toolbar{
+    --background: var(--ion-color-buyit);
+    color: white;
+}
 
-  ion-tab-bar{
-      --background: var(--ion-color-buyit);
-        
-  }
+ion-tab-bar{
+    --background: var(--ion-color-buyit);
+    
+}
 
-  ion-menu{
-      --background: var(--ion-color-buyit);
-  }
+ion-menu{
+    --background: var(--ion-color-buyit);
+}
+
+.setting-modal .modal-wrapper {
+    position: absolute;
+      width: 100% !important;
+      height: 40% !important;
+      top: 55%;
+      
+      border-radius:25px;
+
+}

@@ -21,9 +21,14 @@
     "@angular/router": "~11.2.0",
     "@capacitor/android": "^2.4.7",
     "@capacitor/core": "2.4.7",
+    "@ionic-native/core": "^5.33.0",
+    "@ionic-native/sqlite": "^5.33.0",
+    "@ionic-native/sqlite-porter": "^5.33.0",
     "@ionic/angular": "^5.5.2",
+    "cordova-sqlite-storage": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -59,5 +64,8 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.0.2"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {}
+  }
 }

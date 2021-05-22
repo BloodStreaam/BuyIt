@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid text-center>
+
+    <ion-row>
+      <ion-col>
+        <img class="logo" src="assets/img/logo-app-srl.svg" />
+      </ion-col>
+    </ion-row>
+    
+    <div class="dcol">
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="9">
+          <ion-input class="inps" type="email" name="email" id="login" placeholder="Email" shape="round" [(ngModel)]="emailField" #email></ion-input>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="9">
+          <ion-input class="inps" type="password" name="password" id="password" placeholder="Password" [(ngModel)]="passwordField" #password></ion-input>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="9">
+          <ion-button (click)="checkLogin('/tabs')" size="medium" color="buyit" expand="block" shape="round">Login</ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="9">
+          <ion-button class="btn"  size="medium" color="buyit" expand="block" shape="round">Registar</ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="9">
+          <ion-button  size="medium" color="primary" expand="block" shape="round">Entrar com Google</ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="9">
+          <ion-button class="btn" size="medium" color="primary" expand="block" shape="round">Entrar com Facebook</ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

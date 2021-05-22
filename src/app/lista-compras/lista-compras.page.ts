@@ -1,3 +1,5 @@
+import { BasededadosService } from './../services/basededados.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaComprasPage implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router, private db: BasededadosService, ) { }
 
   ngOnInit() {
+   // this.checkLogged();
+  }
+
+  
+  searchProducts(){
+      this.route.navigate(["tabs/tabs/loja"]);
   }
 
 }

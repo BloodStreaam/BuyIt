@@ -1,7 +1,8 @@
 {
   "name": "BuyIt",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

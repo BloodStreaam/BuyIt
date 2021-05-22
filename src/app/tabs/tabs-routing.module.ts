@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'lista-compras',
         loadChildren: () => import('../lista-compras/lista-compras.module').then(m => m.ListaComprasPageModule)
       },
+      {
+        path: 'loja',
+        loadChildren: () => import('../loja/loja.module').then(m => m.LojaPageModule)
+      },
 
       {
         path: '',
@@ -34,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: 'tabs/lista-compras',
     pathMatch: 'full'
   }
 ];
