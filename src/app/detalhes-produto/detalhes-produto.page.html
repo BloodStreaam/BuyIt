@@ -9,18 +9,18 @@
     <ion-grid fixed>
       <ion-row>
         <ion-col size="4">
-          <ion-img [src]=""></ion-img>
+          <ion-img [src]="produto.img"></ion-img>
         </ion-col>
         <ion-col size="6">
-          <p>Batata Chinesa Saco 24</p>
-          <p>Preço: 2.31€</p>
+          <p>{{produto.nome}}</p>
+          <p>Preço: {{produto.preco}}€</p>
           <ion-grid fixed>
             <ion-row class="quantity">
-              <ion-button  expand="block" fill="clear" shape="round">
+              <ion-button  expand="block" fill="clear" shape="round" (click)="addQuantity()">
                 +
               </ion-button>
-              <ion-input class="input" type="text" placeholder="1"></ion-input>
-              <ion-button  expand="block" fill="clear" shape="round">
+              <ion-input class="input">{{quantity}}</ion-input>
+              <ion-button  expand="block" fill="clear" shape="round" (click)="removeQuantity()">
                 -
               </ion-button>
             </ion-row>
@@ -40,10 +40,10 @@
         </ion-col>
         <ion-col size="8">
          
-            <ion-button shape="round" color="buyit">
+            <ion-button shape="round" color="buyit" (click)="fecharModal()">
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
-            <ion-button  shape="round" color="buyit">
+            <ion-button  shape="round" color="buyit" (click)="adicionarLista()">
               <ion-icon name="add-outline"></ion-icon>
             </ion-button>
           

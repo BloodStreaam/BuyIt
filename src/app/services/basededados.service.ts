@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
@@ -17,7 +18,8 @@ export interface Cli {
 export class BasededadosService {
   private database: SQLiteObject;
   private dbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
- 
+  public lista = new BehaviorSubject([]);
+  public produtoAdicionar = [];
   clientes = new BehaviorSubject([]);
   produtos = new BehaviorSubject([]);
   
@@ -92,14 +94,42 @@ export class BasededadosService {
     });
     
   }
+  loadProcuraProdutos(procura) {
+    let query = 'SELECT * FROM produtos WHERE nome LIKE %?%';
+    return this.database.executeSql(query, [procura]).then(data => {
+      let produtos = [];
+      if (data.rows.length > 0) {
+        for (var i = 0; i < data.rows.length; i++) {
+          produtos.push({ 
+            id: data.rows.item(i).id,
+            nome: data.rows.item(i).nome,
+            preco: data.rows.item(i).preco,
+            stock: data.rows.item(i).stock,
+            un: data.rows.item(i).un,
+            desconto: data.rows.item(i).desconto,
+            preco_desconto: data.rows.item(i).preco_desconto,
+            tipo: data.rows.item(i).tipo,
+            img: data.rows.item(i).img
+           });
+        }
+      }
+      this.produtos.next(produtos);
+      
+    });
+    
+  }
 
   
   getProdutos(): Observable<any[]> {
     return this.produtos.asObservable();
   }
 
-  getCliente(email, password): Promise<Cli> {
-    return this.database.executeSql('SELECT * FROM clientes WHERE email = ? AND pass = ?', [email, password]).then(data => {
+  getLista(){
+    return this.lista.asObservable();
+  }
+
+  getCliente(email): Promise<Cli> {
+    return this.database.executeSql('SELECT * FROM clientes WHERE email = ?', [email]).then(data => {
       return {
         id: data.rows.item(0).id,
         email: data.rows.item(0).email,

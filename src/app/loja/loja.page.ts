@@ -1,5 +1,5 @@
 import { BasededadosService } from './../services/basededados.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { DetalhesProdutoPage } from '../detalhes-produto/detalhes-produto.page';
@@ -18,7 +18,7 @@ export class LojaPage implements OnInit {
  
  
 
-  produto = {
+  /*produto = {
     id: null,
     nome: "",
     preco: null,
@@ -28,20 +28,39 @@ export class LojaPage implements OnInit {
     preco_desconto: null,
     tipo: null,
     img: ""
-  };
+  };*/
  
   selectedView = 'autores';
 
-  constructor(private db: BasededadosService) {
+  constructor(private db: BasededadosService, private modalController: ModalController) {
   }
 
   ngOnInit() {
+   
+  }
+
+  ionViewDidEnter(){
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
         this.produtos = this.db.getProdutos();
+       console.log(this.produtos)
       }
     });
   }
 
+  async abrirDetalhes(produto) {
+   
+    const modal = await this.modalController.create({
+      component: DetalhesProdutoPage,
+      cssClass: 'setting-modal',
+      componentProps: { 
+        produto: produto
+      }
+    });
+    return await modal.present();
+  }
+
+
   
+
 }

@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController, ToastController } from '@ionic/angular';
 import { BasededadosService, Cli } from '../services/basededados.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
   public passwordField: String; // Variavel com o password escrito pelo utilizador 
 
   cliente : Cli = null
-  constructor(private route: Router, private db: BasededadosService) { }
+  constructor(private route: Router, private db: BasededadosService, private alertController: AlertController, private toastController: ToastController) { }
   
 
   ngOnInit() {
@@ -23,16 +24,49 @@ export class LoginPage implements OnInit {
 
   
 
-  checkLogin(route){
-    this.db.getCliente(this.emailField, this.passwordField)
-    .then(data => {
+ async checkLogin(route){
+    this.db.getCliente(this.emailField)
+    .then(async data => {
      this.cliente=data;
-     this.route.navigate([route]);
-    
+     this.checkCredenciais(route);
+    }).catch(async () =>     {
+      const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Erro',
+      message: 'Por favor, introduza um email válido',
+      buttons: ['OK']
+    });
 
-    }).catch(e => console.error(e));
-
-    
-
+    await alert.present(); 
+    });
+  
   }
+
+  async checkCredenciais(route){
+    if(this.cliente.password != this.passwordField){
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Erro',
+        message: 'Por favor, introduza a password correta',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }else{
+      this.route.navigate([route])
+      const toast = await this.toastController.create({
+        message: 'Login bem sucedido!',
+        duration: 2000,
+        buttons: [
+          {
+            text: 'Done',
+            role: 'cancel',
+            }
+        ]
+      });
+      toast.present();
+    }  
+  }
+  
+
 }

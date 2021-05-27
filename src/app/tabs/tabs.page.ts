@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private routeExtras : ActivatedRoute) {}
   
   public checkList = true;
 
@@ -18,6 +18,7 @@ export class TabsPage {
   }
 
   public searchProducts(){
+   
     this.route.navigate(["tabs/tabs/loja"]);
   }
 
