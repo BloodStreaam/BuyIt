@@ -13,7 +13,7 @@ import { DetalhesProdutoPage } from '../detalhes-produto/detalhes-produto.page';
 export class LojaPage implements OnInit {
 
   
-  
+  public searchInput
   produtos: Observable<any[]>;
  
  
@@ -42,7 +42,7 @@ export class LojaPage implements OnInit {
   ionViewDidEnter(){
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
-        this.produtos = this.db.getProdutos();
+        this.produtos = this.db.getProcuraProdutos(this.db.searchInput);
        console.log(this.produtos)
       }
     });

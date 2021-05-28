@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>pagamento-casa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-radio-group>
+
+      <ion-list-header>
+        <ion-label>Escolha a sua morada de faturação:</ion-label>
+      </ion-list-header>
+     
+      <ion-item>
+        <ion-label>Rua Maria de Fatima nº18 | 4910-720 Vila Praia de Âncora, Viana do Castelo, Portugal</ion-label>
+        <ion-radio slot="start" color="success" value="morada"></ion-radio>
+      </ion-item>
+
+      <!--não sei se algum destes tem de dar check mas se der algum erro então provavelmente é aqui-->
+
+    </ion-radio-group>
+  
+  </ion-list>
+
+  <ion-list>
+
+    <ion-radio-group>
+
+      <ion-list-header>
+        <ion-label>Escolha o seu método de pagamento:</ion-label>
+      </ion-list-header>
+     
+      <ion-item>
+        <ion-label>Multibanco</ion-label>
+        <ion-radio slot="start" color="success" value="multibanco"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>PayPal</ion-label>
+        <ion-radio slot="start" color="tertiary" value="paypal"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Cartão de Crédito/Débito</ion-label>
+        <ion-radio slot="start" color="danger" value="cartao"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Pagar na Loja</ion-label>
+        <ion-radio slot="start" color="danger" value="loja"></ion-radio>
+      </ion-item>
+
+      <!--não sei se algum destes tem de dar check mas se der algum erro então provavelmente é aqui-->
+
+    </ion-radio-group>
+  
+  </ion-list>
+</ion-content>

@@ -33,7 +33,23 @@ const routes: Routes = [
   {
     path: 'detalhes-produto',
     loadChildren: () => import('./detalhes-produto/detalhes-produto.module').then( m => m.DetalhesProdutoPageModule)
+  },  {
+    path: 'localizacao',
+    loadChildren: () => import('./localizacao/localizacao.module').then( m => m.LocalizacaoPageModule)
+  },
+  {
+    path: 'qrcode',
+    loadChildren: () => import('./qrcode/qrcode.module').then( m => m.QrcodePageModule)
+  },
+  {
+    path: 'pagamento',
+    loadChildren: () => import('./pagamento/pagamento.module').then( m => m.PagamentoPageModule)
+  },
+  {
+    path: 'pagamento-casa',
+    loadChildren: () => import('./pagamento-casa/pagamento-casa.module').then( m => m.PagamentoCasaPageModule)
   }
+
 ];
 @NgModule({
   imports: [
