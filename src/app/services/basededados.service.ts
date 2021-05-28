@@ -22,7 +22,7 @@ export class BasededadosService {
   public produtoAdicionar = [];
   clientes = new BehaviorSubject([]);
   produtos = new BehaviorSubject([]);
-  
+  public searchInput;
   constructor(private plt: Platform, private sqlitePorter: SQLitePorter, private sqlite: SQLite, private http: HttpClient) {
     this.plt.ready().then(() => {
       this.sqlite.create({
@@ -94,9 +94,9 @@ export class BasededadosService {
     });
     
   }
-  loadProcuraProdutos(procura) {
-    let query = 'SELECT * FROM produtos WHERE nome LIKE %?%';
-    return this.database.executeSql(query, [procura]).then(data => {
+  getProcuraProdutos(procura) {
+    let query = 'SELECT * FROM produtos WHERE nome LIKE ?';
+    this.database.executeSql(query, ['%' + procura + '%']).then(data => {
       let produtos = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
@@ -116,7 +116,7 @@ export class BasededadosService {
       this.produtos.next(produtos);
       
     });
-    
+    return this.produtos.asObservable();
   }
 
   
