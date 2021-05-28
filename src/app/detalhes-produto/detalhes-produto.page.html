@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detalhesProduto</ion-title>
+    <ion-title>Detalhes do produto</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,6 +16,7 @@
           <p>Preço: {{produto.preco}}€</p>
           <ion-grid fixed>
             <ion-row class="quantity">
+<<<<<<< Updated upstream
               <ion-button  expand="block" fill="clear" shape="round" (click)="addQuantity()">
                 +
               </ion-button>
@@ -23,6 +24,11 @@
               <ion-button  expand="block" fill="clear" shape="round" (click)="removeQuantity()">
                 -
               </ion-button>
+=======
+              <ion-button  expand="block" fill="clear" shape="round">+</ion-button>
+              <ion-input class="input" type="number" placeholder="1"></ion-input>
+              <ion-button  expand="block" fill="clear" shape="round">-</ion-button>
+>>>>>>> Stashed changes
             </ion-row>
           </ion-grid>
         </ion-col>
