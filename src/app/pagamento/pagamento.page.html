@@ -1,45 +1,129 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Métodos de pagamento</ion-title>
+    <ion-title>Metodo de Pagamento</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/tabs"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
+
+
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+  <ion-radio-group (ionChange)="guardarValor($event)">
+
+    <ion-list-header>
+      <ion-label>Escolha a sua morada de faturação:</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let morada of this.moradas | async">
+      <ion-label class="ion-text-wrap">{{morada.rua}} | {{morada.codPostal}} {{morada.cidade}}, {{morada.concelho}},
+        Portugal</ion-label>
+      <ion-radio slot="start" color="danger" value="morada"></ion-radio>
+    </ion-item>
+
+    <!--não sei se algum destes tem de dar check mas se der algum erro então provavelmente é aqui-->
+
+  </ion-radio-group>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-label>Editar Morada</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label (click)="criarMorada()">+ Adicionar Morada</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-list>
 
-    <ion-radio-group>
+    <ion-radio-group (ionChange)="apresentarCampos($event)">
 
       <ion-list-header>
         <ion-label>Escolha o seu método de pagamento:</ion-label>
       </ion-list-header>
-     
-      <ion-item>
-        <ion-label>Multibanco</ion-label>
-        <ion-radio slot="start" color="success" value="multibanco"></ion-radio>
-      </ion-item>
 
       <ion-item>
-        <ion-label>PayPal</ion-label>
-        <ion-radio slot="start" color="tertiary" value="paypal"></ion-radio>
+        <ion-label>Multibanco</ion-label>
+        <ion-radio slot="start" color="danger" value="multibanco"></ion-radio>
       </ion-item>
+
+      <ion-label *ngIf="escolhaPagamento == 'multibanco'">A referência estará presente no email quando concluir a compra
+      </ion-label>
 
       <ion-item>
         <ion-label>Cartão de Crédito/Débito</ion-label>
         <ion-radio slot="start" color="danger" value="cartao"></ion-radio>
       </ion-item>
 
+      <ion-grid fixed *ngIf="escolhaPagamento == 'cartao'">
+        <ion-row>
+          <ion-col size="5">
+            <ion-label>Número de Cartão</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input type="number" placeholder="Número de Cartão" [(ngModel)]="nCartao"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">
+            <ion-label>Data de Validade(MM/AA)</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input type="text" placeholder="Data de Validade do Cartão" [(ngModel)]="dataVencimento"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">
+            <ion-label>Código de Segurança (CVV)</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input type="number" placeholder="Código de Segurança (CVV)" [(ngModel)]="cvv"></ion-input>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
       <ion-item>
-        <ion-label>Pagar na Loja</ion-label>
+        <ion-label>MBWay</ion-label>
+        <ion-radio slot="start" color="danger" value="mbway"></ion-radio>
+      </ion-item>
+
+      <ion-input *ngIf="escolhaPagamento == 'mbway'" type="text" placeholder="Introduza o número de telemóvel">
+      </ion-input>
+
+      <ion-item>
+        <ion-label>Pagar à Cobrança</ion-label>
         <ion-radio slot="start" color="danger" value="loja"></ion-radio>
       </ion-item>
+
+
 
       <!--não sei se algum destes tem de dar check mas se der algum erro então provavelmente é aqui-->
 
     </ion-radio-group>
-  
+
   </ion-list>
-  
-  <ion-button expand="block" color="buyit">Seguinte</ion-button>
+
+
+
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div>
+      <p>Total Carrinho: {{valorCarrinho}}€</p>
+      <p>Portes: 1.21€</p>
+      <p>Total: {{valorTotal}}€</p>
+    </div>
+
+    <ion-button (click)="finalizarCompra()" expand="block" color="light" shape="round">
+      Finalizar Compra
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

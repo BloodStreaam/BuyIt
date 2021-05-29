@@ -7,11 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: ListaComprasPage
-  },  {
-    path: 'comprar',
-    loadChildren: () => import('./comprar/comprar.module').then( m => m.ComprarPageModule)
   }
-
 ];
 
 @NgModule({

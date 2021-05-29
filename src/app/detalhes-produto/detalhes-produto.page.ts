@@ -1,7 +1,7 @@
 import { BasededadosService } from './../services/basededados.service';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { ModalController, ToastController } from '@ionic/angular';
-import { Component, OnInit, NgModule, Input } from '@angular/core';
+import {  NavigationExtras, Router } from '@angular/router';
+import { ModalController, ToastController, NavController } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -13,7 +13,7 @@ export class DetalhesProdutoPage implements OnInit {
   @Input() produto: any;
   public quantity = 1;
   
-  constructor(private modalController: ModalController, private route: Router, private toastController: ToastController, private db:BasededadosService) { }
+  constructor(private navController: NavController, private modalController: ModalController, private route: Router, private toastController: ToastController, private db:BasededadosService) { }
 
   ngOnInit() {
 
@@ -71,10 +71,26 @@ export class DetalhesProdutoPage implements OnInit {
   
       this.modalController.dismiss();
     }
-   
-    
 
   }
+
+  abrirLocalizacao(produto){
+    
+    let navigationExtras: NavigationExtras;
+
+    navigationExtras = {
+      state: {
+          produto: produto
+        }
+      };
+      // Utilização de Extras State (novo desde o Angular 7.2)
+      this.navController.navigateForward(['/localizacao'], navigationExtras);
+      this.modalController.dismiss();
+ 
+ 
+    }
+
+ 
 
 
 }

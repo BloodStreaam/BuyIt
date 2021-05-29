@@ -1,8 +1,9 @@
 import { BasededadosService } from './../services/basededados.service';
 import { Component, OnInit, NgModule } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { DetalhesProdutoPage } from '../detalhes-produto/detalhes-produto.page';
+import { NavigationExtras } from '@angular/router';
 
 
 @Component({
@@ -30,9 +31,9 @@ export class LojaPage implements OnInit {
     img: ""
   };*/
  
-  selectedView = 'autores';
 
-  constructor(private db: BasededadosService, private modalController: ModalController) {
+
+  constructor(private navController: NavController, private db: BasededadosService, private modalController: ModalController) {
   }
 
   ngOnInit() {
@@ -42,7 +43,7 @@ export class LojaPage implements OnInit {
   ionViewDidEnter(){
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
-        this.produtos = this.db.getProcuraProdutos(this.db.searchInput);
+        this.produtos = this.db.getProdutos()
        console.log(this.produtos)
       }
     });
@@ -62,5 +63,20 @@ export class LojaPage implements OnInit {
 
 
   
+  abrirLocalizacao(produto){
+    
+    let navigationExtras: NavigationExtras;
 
+    navigationExtras = {
+      state: {
+          produto: produto
+        }
+      };
+      // Utilização de Extras State (novo desde o Angular 7.2)
+      this.navController.navigateForward(['/localizacao'], navigationExtras);
+      
+ 
+ 
+    }
+    
 }
