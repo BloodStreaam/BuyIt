@@ -57,6 +57,11 @@
         </ion-row>
       </div>
       <ion-row>
+        <ion-col>
+          <ion-button class="locationButton" fill="outline" shape="round" color="buyit" (click)="abrirLocalizacao(produto)" >
+            <ion-icon name="location"></ion-icon>
+          </ion-button>
+        </ion-col>
         <ion-col class="ion-text-center" size="2">
           <ion-toggle color="buyit"></ion-toggle>
         </ion-col>
@@ -66,9 +71,7 @@
       </ion-row>
       <ion-row>
         <ion-col class="col" align-self-center>
-          <ion-button>
-            <ion-icon slot="icon-only" name="add"></ion-icon>
-          </ion-button>
+        
         </ion-col>
       </ion-row>
     </ion-grid>

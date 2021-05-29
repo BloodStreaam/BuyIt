@@ -1,5 +1,5 @@
 <ion-tabs>
-  <ion-searchbar color="light" [(ngModel)]="searchInput" (change)="searchProducts()"></ion-searchbar>
+  <ion-searchbar color="light" [(ngModel)]="searchInput"  (search)="searchProducts()"></ion-searchbar>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="tab1" (click)="changeTab(false)">
       <ion-icon name="flame"></ion-icon>

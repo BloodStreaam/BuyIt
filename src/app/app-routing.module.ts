@@ -33,7 +33,8 @@ const routes: Routes = [
   {
     path: 'detalhes-produto',
     loadChildren: () => import('./detalhes-produto/detalhes-produto.module').then( m => m.DetalhesProdutoPageModule)
-  },  {
+  },
+  {
     path: 'localizacao',
     loadChildren: () => import('./localizacao/localizacao.module').then( m => m.LocalizacaoPageModule)
   },
@@ -46,9 +47,15 @@ const routes: Routes = [
     loadChildren: () => import('./pagamento/pagamento.module').then( m => m.PagamentoPageModule)
   },
   {
-    path: 'pagamento-casa',
-    loadChildren: () => import('./pagamento-casa/pagamento-casa.module').then( m => m.PagamentoCasaPageModule)
+    path: 'compra',
+    loadChildren: () => import('./comprar/comprar.module').then( m => m.ComprarPageModule)
+  },  {
+    path: 'morada',
+    loadChildren: () => import('./morada/morada.module').then( m => m.MoradaPageModule)
   }
+
+
+ 
 
 ];
 @NgModule({

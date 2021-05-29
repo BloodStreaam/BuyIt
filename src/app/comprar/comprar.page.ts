@@ -1,5 +1,6 @@
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NavController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-comprar',
@@ -8,16 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComprarPage implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private modalController: ModalController, private route: Router, private navController: NavController) { }
 
   ngOnInit() {
   }
 
-  abrirCompraOnline(){
-      this.route.navigate(['/pagamento'])
+  abrirCompra(opcao){
+    let navigationExtras: NavigationExtras;
+
+    navigationExtras = {
+      state: {
+          pagAbrir: opcao
+        }
+      };
+      // Utilização de Extras State (novo desde o Angular 7.2)
+      this.navController.navigateForward(['/pagamento'], navigationExtras)
+      this.modalController.dismiss();
   }
 
-  abrirCompraFisica(){
-    this.route.navigate(['/pagamento-casa'])
-  }
+ 
 }

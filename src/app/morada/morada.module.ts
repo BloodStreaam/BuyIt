@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PagamentoCasaPageRoutingModule } from './pagamento-casa-routing.module';
+import { MoradaPageRoutingModule } from './morada-routing.module';
 
-import { PagamentoCasaPage } from './pagamento-casa.page';
+import { MoradaPage } from './morada.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PagamentoCasaPageRoutingModule
+    MoradaPageRoutingModule
   ],
-  declarations: [PagamentoCasaPage]
+  declarations: [MoradaPage]
 })
-export class PagamentoCasaPageModule {}
+export class MoradaPageModule {}

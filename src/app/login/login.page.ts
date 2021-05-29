@@ -1,8 +1,9 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { NavigationExtras, Router } from '@angular/router';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { AlertController, ToastController, NavController } from '@ionic/angular';
 import { BasededadosService, Cli } from '../services/basededados.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
   public passwordField: String; // Variavel com o password escrito pelo utilizador 
 
   cliente : Cli = null
-  constructor(private route: Router, private db: BasededadosService, private alertController: AlertController, private toastController: ToastController) { }
+  constructor(private navController: NavController, private route: Router, private db: BasededadosService, private alertController: AlertController, private toastController: ToastController) { }
   
 
   ngOnInit() {
@@ -24,11 +25,13 @@ export class LoginPage implements OnInit {
 
   
 
+  
+
  async checkLogin(route){
     this.db.getCliente(this.emailField)
     .then(async data => {
      this.cliente=data;
-     this.checkCredenciais(route);
+     this.checkCredenciais(route, this.cliente);
     }).catch(async () =>     {
       const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -41,8 +44,18 @@ export class LoginPage implements OnInit {
     });
   
   }
+//Guarda o Login do utilizador na cache o que permite manter a conta sempre ligada no telemovel até fazer logout
+  guardarClienteVariaveisCache(cliente){
+      localStorage.setItem('CID', cliente.id)
+      localStorage.setItem('CEmail', cliente.email)
+      
+      let idCliente
 
-  async checkCredenciais(route){
+      idCliente = localStorage.getItem('CID')
+      console.log(idCliente)
+  }
+
+  async checkCredenciais(route, cliente){
     if(this.cliente.password != this.passwordField){
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -53,6 +66,7 @@ export class LoginPage implements OnInit {
   
       await alert.present();
     }else{
+      this.guardarClienteVariaveisCache(cliente)
       this.route.navigate([route])
       const toast = await this.toastController.create({
         message: 'Login bem sucedido!',

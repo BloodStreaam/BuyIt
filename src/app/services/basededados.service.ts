@@ -12,6 +12,13 @@ export interface Cli {
   password: string
 }
 
+export interface Loc {
+  id: number,
+  idTipo: number,
+  indicacoes: string,
+  img: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +29,8 @@ export class BasededadosService {
   public produtoAdicionar = [];
   clientes = new BehaviorSubject([]);
   produtos = new BehaviorSubject([]);
+  morada = new BehaviorSubject([]);
+  localizacao = new BehaviorSubject([]);
   public searchInput;
   constructor(private plt: Platform, private sqlitePorter: SQLitePorter, private sqlite: SQLite, private http: HttpClient) {
     this.plt.ready().then(() => {
@@ -136,6 +145,54 @@ export class BasededadosService {
         password: data.rows.item(0).pass
       }
     });
+  }
+
+  getMoradas(id) {
+    let query = 'SELECT * FROM morada WHERE cid = ?';
+    this.database.executeSql(query, [id]).then(data => {
+      let moradas = [];
+      if (data.rows.length > 0) {
+        for (var i = 0; i < data.rows.length; i++) {
+         moradas.push({ 
+            id: data.rows.item(i).id,
+            cid: data.rows.item(i).cid,
+            rua: data.rows.item(i).rua,
+            codPostal: data.rows.item(i).codPostal,
+            concelho: data.rows.item(i).concelho,
+            cidade: data.rows.item(i).cidade,
+            aMorada: data.rows.item(i).aMorada
+           });
+        }
+      }
+      this.morada.next(moradas);
+      
+    });
+    return this.morada.asObservable();
+  }
+
+  getLocalizacao(idTipo){
+   return this.database.executeSql('SELECT * FROM localizacao WHERE idTipo = ?', [idTipo]).then(data => {
+      return {
+        id: data.rows.item(0).id,
+        idTipo: data.rows.item(0).idTipo,
+        indicacoes: data.rows.item(0).indicacoes,
+        img: data.rows.item(0).img
+      }
+    });
+  }
+
+
+  preparativosCompras(){
+    let produtosLista = []
+    let valorCarrinho = 0;
+    this.lista.subscribe(produtos => produtosLista = produtos)
+
+    for(let produto of produtosLista){
+      valorCarrinho += produto.preco*produto.quantity;
+    }
+    
+    console.log(valorCarrinho)
+    return valorCarrinho
   }
  
 }
