@@ -49,9 +49,14 @@ const routes: Routes = [
   {
     path: 'compra',
     loadChildren: () => import('./comprar/comprar.module').then( m => m.ComprarPageModule)
-  },  {
+  },
+  {
     path: 'morada',
     loadChildren: () => import('./morada/morada.module').then( m => m.MoradaPageModule)
+  }, 
+  {
+    path: 'sucesso',
+    loadChildren: () => import('./sucesso/sucesso.module').then( m => m.SucessoPageModule)
   }
 
 

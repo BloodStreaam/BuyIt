@@ -2,7 +2,6 @@
 
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { AlertController, ToastController, NavController } from '@ionic/angular';
 import { BasededadosService, Cli } from '../services/basededados.service';
 

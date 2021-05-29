@@ -4,6 +4,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-img [src]="img"></ion-img>
 
+  <ion-label>A sua compra foi realizada com sucesso! Em breve será enviado um email com a confirmação da sua encomenda! Obrigado</ion-label>
+
+  <ion-button (click)="voltar()" expand="block" fill="clear"color="buyit" shape="round">
+    Fechar
+  </ion-button>
 </ion-content>

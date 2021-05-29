@@ -104,19 +104,7 @@ export class PagamentoPage implements OnInit {
     }
 
     if(this.escolhaPagamento != null && this.moradaSelecionada != null){
-      if(this.escolhaPagamento == "mbway" && this.telemovel == null){
-        const alert = await this.alertController.create({
-          cssClass: 'my-custom-class',
-          header: '',
-          message: 'Insira um número de telemóvel válido',
-          buttons: ['OK']
-        });
-      }
-
-      if(this.escolhaPagamento == "cartao" && this.nCartao == null || this.escolhaPagamento == "cartao" && this.dataVencimento == null || this.escolhaPagamento == "cartao" && this.cvv == null){
-        
-      }
-
+      this.router.navigate(['/sucesso'])
     }
   }
 
