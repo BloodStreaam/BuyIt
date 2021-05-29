@@ -48,6 +48,10 @@ const routes: Routes = [
   {
     path: 'pagamento-casa',
     loadChildren: () => import('./pagamento-casa/pagamento-casa.module').then( m => m.PagamentoCasaPageModule)
+  },
+  {
+    path: 'sucesso',
+    loadChildren: () => import('./sucesso/sucesso.module').then( m => m.SucessoPageModule)
   }
 
 ];
