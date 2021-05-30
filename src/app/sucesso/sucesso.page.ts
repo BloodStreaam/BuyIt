@@ -14,6 +14,7 @@ export class SucessoPage implements OnInit {
   ngOnInit() {
   }
 
+  //volta para lista e esvazia a mesma
   voltar(){
     this.route.navigate(['/tabs'])
     this.db.produtoAdicionar.length = 0;

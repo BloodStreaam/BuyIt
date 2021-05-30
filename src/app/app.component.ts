@@ -13,5 +13,10 @@ export class AppComponent {
     { title: 'Definições', url: '/folder/Archived', icon: 'settings' }
   ];
  
-  constructor() {}
+  constructor( ) {
+    
+
+  }
+
+  
 }

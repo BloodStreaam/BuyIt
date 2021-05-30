@@ -1,5 +1,5 @@
-<ion-content>
-  <ion-item>
+<ion-content class="ion-padding">
+
     <ion-grid fixed>
       <ion-row>
         <ion-col size="4">
@@ -10,13 +10,19 @@
           <p>Preço: {{produto.preco}}€</p>
           <ion-grid fixed>
             <ion-row class="quantity">
-              <ion-button  expand="block" fill="clear" shape="round" (click)="addQuantity()">
-                +
-              </ion-button>
-              <ion-input class="input">{{quantity}}</ion-input>
-              <ion-button  expand="block" fill="clear" shape="round" (click)="removeQuantity()">
-                -
-              </ion-button>
+              <ion-col size="5" class="ion-text-right">
+                <ion-button expand="block" color="buyit" shape="round" (click)="addQuantity()">
+                  +
+                </ion-button>
+              </ion-col>
+              <ion-col size="2" class="ion-text-center">
+                <ion-input class="input">{{quantity}}</ion-input>
+              </ion-col>
+              <ion-col size="5" class="ion-text-left">
+                <ion-button expand="block" color="buyit" shape="round" (click)="removeQuantity()">
+                  -
+                </ion-button>
+              </ion-col>
             </ion-row>
           </ion-grid>
         </ion-col>
@@ -27,23 +33,23 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="4">
-          <ion-button class="locationButton" fill="outline" shape="round" color="buyit" (click)="abrirLocalizacao(produto)" >
+        <ion-col size="4" class="ion-text-center">
+          <ion-button class="locationButton" fill="outline" shape="round" color="buyit"
+            (click)="abrirLocalizacao(produto)">
             <ion-icon name="location"></ion-icon>
           </ion-button>
         </ion-col>
-        <ion-col size="8">
-         
-            <ion-button shape="round" color="buyit" (click)="fecharModal()">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
-            <ion-button  shape="round" color="buyit" (click)="adicionarLista()">
-              <ion-icon name="add-outline"></ion-icon>
-            </ion-button>
-          
-          
+        <ion-col size="4" class="ion-text-center">
+          <ion-button shape="round" color="success" (click)="adicionarLista()">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <ion-button shape="round" color="danger" (click)="fecharModal()">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-item>
+ 
 </ion-content>

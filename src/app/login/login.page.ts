@@ -1,5 +1,4 @@
-
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AlertController, ToastController, NavController } from '@ionic/angular';
@@ -14,18 +13,20 @@ export class LoginPage implements OnInit {
   public emailField: String; // Variavel com o email escrito pelo utilizador
   public passwordField: String; // Variavel com o password escrito pelo utilizador 
 
-  cliente : Cli = null
-  constructor(private navController: NavController, private route: Router, private db: BasededadosService, private alertController: AlertController, private toastController: ToastController) { }
+  cliente : Cli = null //Guardará o cliente que fez o login
+  constructor(private orientacao: ScreenOrientation, private route: Router, private db: BasededadosService, private alertController: AlertController, private toastController: ToastController) {
+    this.orientacao.lock(this.orientacao.ORIENTATIONS.PORTRAIT);
+   }
   
 
   ngOnInit() {
-
+   
   }
 
   
 
   
-
+//Verifica se o cliente existe ou não. se não existir apresenta aviso para inserir um email válido
  async checkLogin(route){
     this.db.getCliente(this.emailField)
     .then(async data => {
@@ -53,6 +54,8 @@ export class LoginPage implements OnInit {
       idCliente = localStorage.getItem('CID')
       console.log(idCliente)
   }
+
+  //VERIFICA SE A PASS ESTÁ CERTA SE NAO ESTIVER AVISA O UTILIZADOR SE ESTIVER AVANÇA PRA PROXIMA PÁGINA
 
   async checkCredenciais(route, cliente){
     if(this.cliente.password != this.passwordField){

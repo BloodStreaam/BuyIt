@@ -25,11 +25,8 @@ export class TabsPage {
       this.route.navigate(["tabs/tabs/lista-compras"])
      
     }
-      /*this.procederCompra();
-      this.checkList = verification;*/
-    
-      this.checkList = verification;
-    
+       
+    this.checkList = verification;
     console.log(this.checkList)
   }
 
@@ -89,7 +86,7 @@ export class TabsPage {
   }
 
   /*Pesquisa os produtos que o utilizador deseja*/
-  public searchProducts(ev){
+  public searchProducts(){
     
 
     this.db.getProcuraProdutos(this.searchInput)

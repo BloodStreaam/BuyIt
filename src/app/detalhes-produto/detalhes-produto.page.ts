@@ -19,26 +19,29 @@ export class DetalhesProdutoPage implements OnInit {
 
   }
 
+  //Aumenta a quantidade do produto
   addQuantity(){
     this.quantity ++;
     console.log(this.quantity)
   }
 
+  //Diminue a quantidade do produto
   removeQuantity(){
     if(this.quantity > 1){
       this.quantity--;
     }
   }
 
+  //Fecha o modal
   fecharModal(){
       this.modalController.dismiss();
   }
 
-  
+  //Adiciona o produto a lista
   async adicionarLista(){
     let checkItem = false;
 
-    for(let produto of this.db.produtoAdicionar){
+    for(let produto of this.db.produtoAdicionar){ //verifica se o produto está na lista e apresenta aviso caso esteja
       if(produto.id == this.produto.id){
         checkItem = true;
         const toast = await this.toastController.create({
@@ -49,7 +52,7 @@ export class DetalhesProdutoPage implements OnInit {
       }
     }
 
-    if(checkItem == false){
+    if(checkItem == false){ //se não estiver na lista adiciona o produto a lista
       this.db.produtoAdicionar.push({
         id: this.produto.id,
         nome: this.produto.nome,
@@ -63,7 +66,7 @@ export class DetalhesProdutoPage implements OnInit {
         quantity: this.quantity
       })
   
-      const toast = await this.toastController.create({
+      const toast = await this.toastController.create({ //Avisa que foi adicionado com sucesso
         message: 'Produto Adicionado Com Sucesso!',
         duration: 2000
       });
@@ -74,6 +77,7 @@ export class DetalhesProdutoPage implements OnInit {
 
   }
 
+  //abre a página localizacao apresentando o produto em questão 
   abrirLocalizacao(produto){
     
     let navigationExtras: NavigationExtras;
@@ -83,7 +87,7 @@ export class DetalhesProdutoPage implements OnInit {
           produto: produto
         }
       };
-      // Utilização de Extras State (novo desde o Angular 7.2)
+      // passa a informacao e abre a página produto
       this.navController.navigateForward(['/localizacao'], navigationExtras);
       this.modalController.dismiss();
  

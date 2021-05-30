@@ -13,25 +13,8 @@ import { NavigationExtras } from '@angular/router';
 })
 export class LojaPage implements OnInit {
 
-  
-  public searchInput
-  produtos: Observable<any[]>;
- 
- 
-
-  /*produto = {
-    id: null,
-    nome: "",
-    preco: null,
-    stock: null,
-    un: "",
-    desconto: null,
-    preco_desconto: null,
-    tipo: null,
-    img: ""
-  };*/
- 
-
+  produtos: Observable<any[]>; // Contém os produtos pesquisados pelo utilizador
+  //É prepositado a pesquisa de produtos sem texto na barra de pesquisa para melhor avaliação na tarefa de adicionar produtos à lista de compras/carrinho
 
   constructor(private navController: NavController, private db: BasededadosService, private modalController: ModalController) {
   }
@@ -44,11 +27,12 @@ export class LojaPage implements OnInit {
     this.db.getDatabaseState().subscribe(rdy => {
       if (rdy) {
         this.produtos = this.db.getProdutos()
-       console.log(this.produtos)
+        
       }
     });
   }
 
+  //abre os detalhes do produto selecionado
   async abrirDetalhes(produto) {
    
     const modal = await this.modalController.create({
@@ -62,7 +46,7 @@ export class LojaPage implements OnInit {
   }
 
 
-  
+  //aBRE A PÁGINA LOCALIZACAO
   abrirLocalizacao(produto){
     
     let navigationExtras: NavigationExtras;
@@ -72,7 +56,7 @@ export class LojaPage implements OnInit {
           produto: produto
         }
       };
-      // Utilização de Extras State (novo desde o Angular 7.2)
+    
       this.navController.navigateForward(['/localizacao'], navigationExtras);
       
  

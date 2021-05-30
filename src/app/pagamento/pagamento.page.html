@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
+<div *ngIf="opcaoEscolhida == 'Online'">
   <ion-radio-group (ionChange)="guardarValor($event)">
 
     <ion-list-header>
@@ -38,7 +38,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+</div>
   <ion-list>
 
     <ion-radio-group (ionChange)="apresentarCampos($event)">

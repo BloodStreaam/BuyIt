@@ -47,6 +47,7 @@ export class PagamentoPage implements OnInit {
    
   }
 
+  //Carrega as moradas do cliente para esta página
   carregarMoradas(){
     let idCliente;
     idCliente = localStorage.getItem('CID')
@@ -54,20 +55,24 @@ export class PagamentoPage implements OnInit {
     this.moradas= this.db.getMoradas(idCliente)
   }
 
+  //Cancela o pagamento e volta a lista
   retroceder(){
     this.router.navigate(['/tabs']);
     
   }
 
+  //Apresenta os campos dos metedos de pagamento
   apresentarCampos(ev){
     this.escolhaPagamento = ev.detail.value
     console.log(this.escolhaPagamento)
   }
 
+  //Guarda a morada selecionada
   guardarValor(ev){
     this.moradaSelecionada = ev.detail.value
   }
 
+  //Apresenta um modal para adição de uma nova morada (Sem utilização no momento)
   async criarMorada() {
    
     const modal = await this.modalController.create({
@@ -79,9 +84,8 @@ export class PagamentoPage implements OnInit {
   }
 
   /*verificar se os campos estão preenchidos dependendo do tipoDePagamento escolhido*/
-
   async finalizarCompra(){
-    if(this.moradaSelecionada == null){
+    if(this.moradaSelecionada == null && this.opcaoEscolhida == 'Online'){
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
         header: 'Falta Morada',
@@ -92,7 +96,7 @@ export class PagamentoPage implements OnInit {
       await alert.present();
     }
 
-    if(this.escolhaPagamento == null && this.moradaSelecionada != null){
+    if(this.opcaoEscolhida == 'Online' && this.escolhaPagamento == null && this.moradaSelecionada != null){
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
         header: 'Falta metodo de Pagamento',
@@ -103,7 +107,18 @@ export class PagamentoPage implements OnInit {
       await alert.present();
     }
 
-    if(this.escolhaPagamento != null && this.moradaSelecionada != null){
+    if(this.opcaoEscolhida == 'Fisica' && this.escolhaPagamento == null){
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Falta metodo de Pagamento',
+        message: 'Por favor, selecione um metodo de pagamento!',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }
+
+    if(this.escolhaPagamento != null && this.moradaSelecionada != null || this.opcaoEscolhida == "Fisica" && this.escolhaPagamento != null){
       this.router.navigate(['/sucesso'])
     }
   }

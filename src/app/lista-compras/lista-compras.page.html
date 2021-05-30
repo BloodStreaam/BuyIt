@@ -9,7 +9,7 @@
 
 <ion-content>
 
-  <div *ngIf="lista != null">
+  <div *ngIf="lista.length > 0">
   <ion-item  *ngFor="let produto of this.lista ">
     <ion-grid fixed>
       <ion-row>
@@ -55,7 +55,7 @@
   </ion-item>
 </div>
 
-  <ion-grid fixed *ngIf="lista == null">
+  <ion-grid fixed *ngIf="lista.length == 0">
     <ion-row class="ion-align-self-center">
       <ion-col class="ion-text-center">
         <h5>Neste momento não tem nenhuma produto na sua lista</h5>
